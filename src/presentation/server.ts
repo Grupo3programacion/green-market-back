@@ -1,8 +1,9 @@
-import express from 'express';
+import express, { Router } from 'express';
 import path from 'path';
 
 interface Options {
   port: number;
+  routes: Router;
   public_path?: string;
 }
 
@@ -12,11 +13,15 @@ export class Server {
   private app = express();
   private readonly port: number;
   private readonly publicPath: string;
+  private readonly routes: Router;
 
   constructor(options: Options) {
-    const { port, public_path = 'public' } = options;
+    const { port, public_path = 'public', routes} = options;
     this.port = port;
     this.publicPath = public_path;
+    this.routes  = routes;
+
+    
   }
 
   
@@ -25,10 +30,15 @@ export class Server {
     
 
     //* Middlewares
+    this.app.use( express.json() ); // raw recibe formato json
+    this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded recibe este formato
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
 
+
+    //* Routes
+    this.app.use( this.routes );
 
 
     this.app.get('*', (req, res) => {
@@ -44,3 +54,6 @@ export class Server {
   }
 
 }
+
+
+//Recordar que un middelware es una función que se ejecuta antes de correr una ruta.
