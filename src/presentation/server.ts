@@ -16,7 +16,7 @@ export class Server {
   private readonly routes: Router;
 
   constructor(options: Options) {
-    const { port, public_path = 'public', routes} = options;
+    const { port,routes, public_path = 'public'} = options;
     this.port = port;
     this.publicPath = public_path;
     this.routes  = routes;
