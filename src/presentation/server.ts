@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+// import compression from 'compression';
 import path from 'path';
 
 interface Options {
@@ -16,12 +17,10 @@ export class Server {
   private readonly routes: Router;
 
   constructor(options: Options) {
-    const { port,routes, public_path = 'public'} = options;
+    const { port, routes, public_path = 'public' } = options;
     this.port = port;
     this.publicPath = public_path;
-    this.routes  = routes;
-
-    
+    this.routes = routes;
   }
 
   
@@ -30,8 +29,9 @@ export class Server {
     
 
     //* Middlewares
-    this.app.use( express.json() ); // raw recibe formato json
-    this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded recibe este formato
+    this.app.use( express.json() ); // raw
+    this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded
+    // this.app.use( compression() )
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
@@ -41,6 +41,7 @@ export class Server {
     this.app.use( this.routes );
 
 
+    //* SPA
     this.app.get('*', (req, res) => {
       const indexPath = path.join( __dirname + `../../../${ this.publicPath }/index.html` );
       res.sendFile(indexPath);
@@ -54,6 +55,3 @@ export class Server {
   }
 
 }
-
-
-//Recordar que un middelware es una función que se ejecuta antes de correr una ruta.
