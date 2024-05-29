@@ -1,4 +1,4 @@
-import { CreateClienteDto, CreateTodoDto } from '../../dtos';
+import { CreateClienteDto } from '../../dtos';
 import { changeStatusClienteDto } from '../../dtos/cliente/changestatus-cliente.dto';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { CustomError } from '../../errors/custom.error';

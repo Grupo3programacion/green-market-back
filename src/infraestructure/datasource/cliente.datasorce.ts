@@ -1,5 +1,5 @@
 import { prisma } from '../../data/postgres';
-import { CreateClienteDto, CreateTodoDto, TodoDatasource, TodoEntity, UpdateClienteDto, UpdateTodoDto } from '../../domain';
+import { CreateClienteDto, UpdateClienteDto } from '../../domain';
 import { ClienteDatasource } from '../../domain/datasources/cliente.datasources';
 import { ClienteEntity } from '../../domain/entities/cliente.entity';
 import { changeStatusClienteDto } from '../../domain/dtos/cliente/changestatus-cliente.dto';

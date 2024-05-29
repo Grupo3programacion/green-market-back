@@ -1,7 +1,5 @@
 
 
-export * from './todos/create-todo.dto';
-export * from './todos/update-todo.dto';
 export * from './cliente/create-cliente.dto';
 export * from './cliente/update-cliente.dto';
 export * from './categoria/create-categoria.dto';

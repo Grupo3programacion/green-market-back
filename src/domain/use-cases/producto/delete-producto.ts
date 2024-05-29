@@ -1,9 +1,7 @@
 import { changeStatusProductoDto } from '../../dtos/producto/change-state-producto.dto';
 import { ProductoEntity } from '../../entities/producto.entity';
-import { TodoEntity } from '../../entities/todo.entity';
 import { CustomError } from '../../errors/custom.error';
 import { ProductoRepository } from '../../repositories/producto.repository';
-import { TodoRepository } from '../../repositories/todo.repository';
 
 
 export interface DeleteProductoUseCase {

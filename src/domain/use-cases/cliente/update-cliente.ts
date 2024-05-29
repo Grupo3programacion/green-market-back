@@ -1,4 +1,4 @@
-import { UpdateClienteDto, UpdateTodoDto } from '../../dtos';
+import { UpdateClienteDto } from '../../dtos';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { CustomError } from '../../errors/custom.error';
 import { ClienteRepository } from '../../repositories/cliente.repository';
