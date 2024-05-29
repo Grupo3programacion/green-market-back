@@ -13,8 +13,59 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model todo {
+model Producto {
   id  Int @id @default(autoincrement())
-  text String @db.VarChar
-  completedAt DateTime? @db.Timestamp
+  nombreProducto String @db.VarChar
+  cantidad Int
+  precioVenta Float
+  imagen String
+  estado Int
+  nombreProveedor String
+  precioAdquirido Float
+  fechaAdquirido DateTime? @db.Timestamp
+  Categoria Categoria @relation(fields: [idCategoria], references: [id]) 
+  idCategoria Int
+  detalleVenta DetalleVenta[]
+}
+
+model Categoria {
+  id Int @id @default(autoincrement())
+  nombre String
+  estado Int
+  producto Producto[]
+}
+
+model DetalleVenta{
+
+ @@id([idProducto,idVenta])
+
+  idProducto Int
+  idVenta Int
+  cantidad Int
+
+  Producto Producto @relation(fields: [idProducto], references: [id])
+  Venta Venta @relation(fields: [idVenta], references: [id])
+}
+
+model Cliente{
+
+  id Int @id
+  nombre String
+  telefono String
+  correo String
+  clave String
+  estado Int
+  venta Venta[]
+}
+
+
+
+model Venta {
+  id  Int @id @default(autoincrement())
+  precioTotal Float  
+  cliente Cliente @relation(fields: [idCliente], references: [id])
+  idCliente Int
+  fechaVenta DateTime
+  estado String
+  detalleVenta DetalleVenta[]
 }

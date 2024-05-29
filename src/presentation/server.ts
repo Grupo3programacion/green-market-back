@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import cors  from 'cors';
 // import compression from 'compression';
 import path from 'path';
 
@@ -27,6 +28,9 @@ export class Server {
   
   async start() {
     
+
+
+    this.app.use(cors());
 
     //* Middlewares
     this.app.use( express.json() ); // raw
