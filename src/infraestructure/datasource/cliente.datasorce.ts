@@ -20,7 +20,7 @@ export class ClienteDatasourceImpl implements ClienteDatasource {
 
   async getAll(): Promise<ClienteEntity[]> {
     const clientes = await prisma.cliente.findMany();
-    return clientes.map( todo => ClienteEntity.fromObject(todo) );
+    return clientes.map( (todo: any) => ClienteEntity.fromObject(todo) );
   }
 
   async findById( id: number ): Promise<ClienteEntity> {
@@ -36,9 +36,6 @@ export class ClienteDatasourceImpl implements ClienteDatasource {
   async updateById( updateClienteDto: UpdateClienteDto ): Promise<ClienteEntity> {
     
     await this.findById( updateClienteDto.id );
-
-    console.log("Eyy");
-    console.log(updateClienteDto);
     
     const updatedCliente = await prisma.cliente.update({
       where: { id: updateClienteDto.id },
